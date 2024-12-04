@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "deploy": "bash deploy.sh"
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "three": "^0.160.0"

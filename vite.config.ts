@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: './',
+  base: '/three-box-editor-demo/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

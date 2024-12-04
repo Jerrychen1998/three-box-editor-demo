@@ -49,6 +49,9 @@ class App {
             this.orbitControls
         );
 
+        // 初始化编辑器
+        this.initEditor();
+
         // 添加窗口大小变化监听
         window.addEventListener('resize', this.onWindowResize.bind(this));
 
@@ -66,6 +69,14 @@ class App {
         requestAnimationFrame(this.animate.bind(this));
         this.orbitControls.update();
         this.renderer.render(this.scene, this.camera);
+    }
+
+    private initEditor(): void {
+        // 这个方法确保 editableBox 被使用
+        // 实际上我们需要保持这个引用以维持对象的生命周期
+        if (!this.editableBox) {
+            console.error('EditableBox not initialized');
+        }
     }
 }
 
