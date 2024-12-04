@@ -6,7 +6,7 @@ class App {
     private scene: THREE.Scene;
     private camera: THREE.PerspectiveCamera;
     private renderer: THREE.WebGLRenderer;
-    private controls: OrbitControls;
+    private orbitControls: OrbitControls;
     private editableBox: EditableBox;
 
     constructor() {
@@ -21,7 +21,8 @@ class App {
             0.1,
             1000
         );
-        this.camera.position.set(5, 5, 5);
+        this.camera.position.set(2, 2, 2);
+        this.camera.lookAt(0, 0, 0);
 
         // 创建渲染器
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -29,23 +30,26 @@ class App {
         document.body.appendChild(this.renderer.domElement);
 
         // 创建轨道控制器
-        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+        this.orbitControls = new OrbitControls(this.camera, this.renderer.domElement);
+        this.orbitControls.enableDamping = true;
 
-        // 添加光源
-        const ambientLight = new THREE.AmbientLight(0x404040);
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-        directionalLight.position.set(1, 1, 1);
-        this.scene.add(ambientLight, directionalLight);
+        // 添加灯光
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        this.scene.add(ambientLight);
 
-        // 创建可编辑盒子时传入 controls
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
+        directionalLight.position.set(10, 20, 30);
+        this.scene.add(directionalLight);
+
+        // 创建可编辑的盒子
         this.editableBox = new EditableBox(
-            this.scene, 
-            this.camera, 
+            this.scene,
+            this.camera,
             this.renderer,
-            this.controls  // 传入 OrbitControls
+            this.orbitControls
         );
 
-        // 监听窗口变化
+        // 添加窗口大小变化监听
         window.addEventListener('resize', this.onWindowResize.bind(this));
 
         // 开始动画循环
@@ -60,10 +64,10 @@ class App {
 
     private animate(): void {
         requestAnimationFrame(this.animate.bind(this));
-        this.controls.update();
+        this.orbitControls.update();
         this.renderer.render(this.scene, this.camera);
     }
 }
 
-// 启动应用
+// 创建应用实例
 new App(); 
