@@ -3,12 +3,12 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   base: '/three-box-editor-demo/',
   build: {
-    outDir: 'dist',
-    assetsDir: 'assets',
-    rollupOptions: {
-      input: {
-        main: './index.html'
-      }
+    outDir: 'docs',
+    assetsDir: 'assets'
+  },
+  resolve: {
+    alias: {
+      'three/addons/': 'three/examples/jsm/'
     }
   }
 }) 

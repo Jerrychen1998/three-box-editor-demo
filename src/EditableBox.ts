@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import { TransformControls } from 'three/examples/jsm/controls/TransformControls';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { TransformControls } from 'three/addons/controls/TransformControls.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 export class EditableBox {
     private geometry!: THREE.BufferGeometry;
@@ -29,7 +29,7 @@ export class EditableBox {
         this.camera = camera;
         this.orbitControls = orbitControls;
 
-        // 创建基础盒子几何体
+        // 创建基础几何体
         this.createBoxGeometry();
         
         // 创建材质
