@@ -46,3 +46,20 @@ npm run build
 - 拖动顶点或边时，几何体会实时更新
 
 ## 项目结构
+```
+src/
+  ├── main.ts              # 主入口文件
+  └── EditableBox.ts       # 核心编辑功能
+```
+
+## 实现细节
+- 使用 BufferGeometry 创建基础盒子
+- 通过 TransformControls 实现拖拽功能
+- 使用 EdgesGeometry 生成边缘线条
+- 实时更新几何体和辅助对象
+
+## 在线演示
+访问 [GitHub Pages](https://jerrychen1998.github.io/three-box-editor-demo/) 查看在线演示。
+
+## 许可证
+本项目使用 MIT 许可证。详见 [LICENSE](LICENSE) 文件。
